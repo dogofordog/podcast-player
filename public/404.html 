@@ -1,0 +1,10 @@
+<!doctype html>
+<html>
+  <head>
+    <script>
+      sessionStorage.setItem('redirect-path', location.pathname);
+      location.replace('/podcast-player/');
+    </script>
+  </head>
+  <body></body>
+</html>
