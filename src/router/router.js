@@ -1,24 +1,33 @@
 const routes = [];
+const BASE_PATH = '/podcast-player';
 
 export function addRoute(pattern, renderFn) {
   routes.push({ pattern, renderFn });
 }
 
 export function navigate(path) {
-  history.pushState({}, '', path);
-  handleRoute(path);
+  history.pushState({}, '', BASE_PATH + path);
+  handleRoute();
 }
 
 export function initRouter() {
   window.addEventListener('popstate', () => {
-    handleRoute(location.pathname);
+    handleRoute();
   });
 
-  handleRoute(location.pathname);
+  handleRoute();
 }
 
-function handleRoute(path) {
+function handleRoute() {
   const container = document.getElementById('page-container');
+
+  let path = location.pathname;
+  if (path.startsWith(BASE_PATH)) {
+    path = path.slice(BASE_PATH.length);
+  }
+  if (path === '') {
+    path = '/';
+  }
 
   for (const route of routes) {
     const match = matchPath(route.pattern, path);
