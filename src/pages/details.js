@@ -1,6 +1,7 @@
 import { fetchPodcastById } from '../api/podcasts.js';
 import { navigate } from '../router/router.js';
 import { formatDuration, formatDate } from '../utils/format-time.js';
+import { startPlayback } from '../player/player-ui.js';
 
 export async function renderDetails(container, params) {
   const data = await fetchPodcastById(params.id);
@@ -16,6 +17,17 @@ export async function renderDetails(container, params) {
 
   document.getElementById('back-button').addEventListener('click', () => {
     navigate('/');
+  });
+
+  container.addEventListener('click', (event) => {
+    const episodeElement = event.target.closest('.episode');
+    if (!episodeElement) return;
+
+    const episodeId = episodeElement.dataset.episodeId;
+    const episode = data.episodes.find((ep) => ep.id === episodeId);
+    if (episode) {
+      startPlayback(episode);
+    }
   });
 }
 
