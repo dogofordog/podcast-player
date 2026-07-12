@@ -49,4 +49,4 @@
           <p>${x(e.pub_date_ms)} · ${b(e.audio_length_sec)}</p>
           <button class="remove-button" data-episode-id="${e.id}">Удалить</button>
         </div>
-      `).join(``)}n(`/`,m),n(`/podcast/:id`,z),n(`/playlist`,V),M(document.getElementById(`player-container`)),i(),document.getElementById(`app-header`).addEventListener(`click`,e=>{let t=e.target.closest(`a`);t&&(e.preventDefault(),r(t.getAttribute(`href`)))});
+      `).join(``)}var U=sessionStorage.getItem(`redirect-path`);U&&(sessionStorage.removeItem(`redirect-path`),history.replaceState({},``,U)),n(`/`,m),n(`/podcast/:id`,z),n(`/playlist`,V),M(document.getElementById(`player-container`)),document.getElementById(`app-header`).addEventListener(`click`,e=>{let t=e.target.closest(`a`);t&&(e.preventDefault(),r(t.getAttribute(`href`)))}),i();
