@@ -328,3 +328,13 @@ code {
   align-items: center;
   gap: 8px;
 }
+#page-container {
+  padding-bottom: 80px;
+}
+#close-player-button {
+  margin-left: auto;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 4px 8px;
+}
